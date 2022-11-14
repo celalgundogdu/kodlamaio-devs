@@ -5,23 +5,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "languages")
-public class Language {
+@Table(name = "technologies")
+public class Technology {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private int id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "language")
-    private List<Technology> technologies;
+    @ManyToOne
+    @JoinColumn(name = "language_id")
+    private Language language;
 }

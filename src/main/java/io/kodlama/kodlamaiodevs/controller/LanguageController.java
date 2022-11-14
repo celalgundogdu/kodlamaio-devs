@@ -1,7 +1,10 @@
 package io.kodlama.kodlamaiodevs.controller;
 
-import io.kodlama.kodlamaiodevs.business.abstracts.LanguageService;
-import io.kodlama.kodlamaiodevs.entity.concretes.Language;
+import io.kodlama.kodlamaiodevs.business.LanguageService;
+import io.kodlama.kodlamaiodevs.dto.request.language.CreateLanguageRequest;
+import io.kodlama.kodlamaiodevs.dto.request.language.UpdateLanguageRequest;
+import io.kodlama.kodlamaiodevs.dto.response.language.GetAllLanguagesResponse;
+import io.kodlama.kodlamaiodevs.dto.response.language.GetLanguageByIdResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,27 +20,27 @@ public class LanguageController {
     }
 
     @GetMapping
-    public List<Language> getAll() {
-        return languageService.getAll();
+    public List<GetAllLanguagesResponse> getAllLanguages() {
+        return languageService.getAllLanguages();
     }
 
     @GetMapping("/{id}")
-    public Language getById(@PathVariable int id) {
-        return languageService.getById(id);
+    public GetLanguageByIdResponse getLanguageById(@PathVariable Integer id) {
+        return languageService.getLanguageById(id);
     }
 
     @PostMapping
-    public void create(@RequestBody Language language) {
-        languageService.create(language);
+    public void createLanguage(@RequestBody CreateLanguageRequest createLanguageRequest) {
+        languageService.createLanguage(createLanguageRequest);
     }
 
     @PutMapping("/{id}")
-    public void update(@RequestBody Language language, @PathVariable int id) {
-        languageService.update(language, id);
+    public void updateLanguage(@PathVariable Integer id, @RequestBody UpdateLanguageRequest updateLanguageRequest) {
+        languageService.updateLanguage(id, updateLanguageRequest);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id) {
-        languageService.delete(id);
+    public void deleteLanguage(@PathVariable Integer id) {
+        languageService.deleteLanguage(id);
     }
 }
